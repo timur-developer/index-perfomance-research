@@ -147,12 +147,37 @@ measured_runs = 1000
 
 - `results/benchmark_results.csv`
 - `results/benchmark_stats.csv`
+- `results/benchmark_medians.csv`
 - `results/index_effectiveness.csv`
 - `results/load_performance.csv`
 - `results/experiment_metadata.json`
+- `results/benchmark_summary.md`
 - `results/summary_ru.md`
-- `charts/*.png`
+- `results/benchmark_table_ru.csv`
+- `results/index_effectiveness_ru.csv`
+- `results/load_performance_ru.csv`
+- `charts/postgres_boxplots.png`
+- `charts/mysql_boxplots.png`
+- `charts/mongo_boxplots.png`
+- `charts/postgres_run_trends.png`
+- `charts/mysql_run_trends.png`
+- `charts/mongo_run_trends.png`
+- `charts/postgres_relative_effect.png`
+- `charts/mysql_relative_effect.png`
+- `charts/mongo_relative_effect.png`
 - `explain_plans/*`
+
+## Дополнительные Q1-артефакты
+
+Если запускать отдельные helper-скрипты для Q1, дополнительно создаются:
+
+- `results/q1_student_id_median_times_all_dbms.csv`
+- `results/q1_student_id_run_times_all_dbms.csv`
+- `charts/q1_student_id_median_times_all_dbms.png`
+- `charts/q1_student_id_median_times_all_dbms_log.png`
+- `charts/q1_student_id_run_times_with_median_subplots.png`
+
+Эти файлы не входят в базовый `run_all.py`, но полезны для более детального разбора запроса `Q1`.
 
 ## Воспроизводимость
 

@@ -282,11 +282,16 @@ def build_summary(stats: pd.DataFrame, effectiveness: pd.DataFrame, load_perf: p
         "",
         "- `results/benchmark_results.csv` - все измеряемые прогоны.",
         "- `results/benchmark_stats.csv` - агрегированная статистика по каждой конфигурации.",
+        "- `results/benchmark_medians.csv` - медианы по каждой группе, используемые для дополнительных Q1-выводов.",
         "- `results/index_effectiveness.csv` - сравнение каждой конфигурации с режимом без индексов.",
         "- `results/load_performance.csv` - сравнение времени загрузки данных.",
+        "- `results/benchmark_summary.md` - машинно сгенерированная текстовая сводка по benchmark.",
+        "- `results/benchmark_table_ru.csv`, `results/index_effectiveness_ru.csv`, `results/load_performance_ru.csv` - русскоязычные таблицы для чтения и вставки в отчет.",
         "- `charts/postgres_boxplots.png`, `charts/mysql_boxplots.png`, `charts/mongo_boxplots.png` - распределения времени.",
         "- `charts/postgres_run_trends.png`, `charts/mysql_run_trends.png`, `charts/mongo_run_trends.png` - ход измерений по номерам прогонов.",
         "- `charts/postgres_relative_effect.png`, `charts/mysql_relative_effect.png`, `charts/mongo_relative_effect.png` - влияние каждой конфигурации индексов.",
+        "- `results/q1_student_id_median_times_all_dbms.csv`, `results/q1_student_id_run_times_all_dbms.csv` - дополнительные Q1-таблицы, если запускались helper-скрипты.",
+        "- `charts/q1_student_id_median_times_all_dbms.png`, `charts/q1_student_id_median_times_all_dbms_log.png`, `charts/q1_student_id_run_times_with_median_subplots.png` - дополнительные Q1-графики, если запускались helper-скрипты.",
     ])
 
     SUMMARY_RU_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
