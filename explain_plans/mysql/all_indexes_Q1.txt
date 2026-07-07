@@ -1,0 +1,2 @@
+-> Aggregate: count(0)  (cost=2.61 rows=1) (actual time=0.0435..0.0435 rows=1 loops=1)
+    -> Covering index lookup on student_activity using idx_mysql_student_id (student_id=4242)  (cost=1.81 rows=8) (actual time=0.0239..0.0253 rows=8 loops=1)

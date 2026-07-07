@@ -1,0 +1,243 @@
+{
+  "explainVersion": "2",
+  "stages": [
+    {
+      "$cursor": {
+        "queryPlanner": {
+          "namespace": "research_db.student_activity",
+          "parsedQuery": {
+            "status": {
+              "$eq": "graded"
+            }
+          },
+          "indexFilterSet": false,
+          "queryHash": "40F4F33D",
+          "planCacheShapeHash": "40F4F33D",
+          "planCacheKey": "09F93218",
+          "optimizationTimeMillis": 0,
+          "cursorType": "regular",
+          "maxIndexedOrSolutionsReached": false,
+          "maxIndexedAndSolutionsReached": false,
+          "maxScansToExplodeReached": false,
+          "prunedSimilarIndexes": false,
+          "winningPlan": {
+            "isCached": false,
+            "queryPlan": {
+              "stage": "GROUP",
+              "planNodeId": 3,
+              "inputStage": {
+                "stage": "COLLSCAN",
+                "planNodeId": 1,
+                "filter": {
+                  "status": {
+                    "$eq": "graded"
+                  }
+                },
+                "nss": "research_db.student_activity",
+                "direction": "forward"
+              }
+            },
+            "slotBasedPlan": {
+              "slots": "$$RESULT=s15 env: {  }",
+              "stages": "[3] project [s15 = newObj(\"_id\", s12, \"cnt\", s13, \"avg_score\", s14)] \n[3] project [s13 = (convert ( s7, int32) ?: s7), s14 = \n    if (s11 == 0ll) \n    then null \n    else (doubleDoubleSumFinalize(s10) / s11) \n] \n[3] group [s12] [s7 = count(), s10 = aggDoubleDoubleSum(s4), s11 = sum(\n    if ((typeMatch(s4, 1088) ?: true) || !(isNumber(s4))) \n    then 0ll \n    else 1ll \n)] spillSlots[s6, s8, s9] mergingExprs[sum(s6), aggMergeDoubleDoubleSums(s8), sum(s9)] \n[3] project [s12 = (s3 ?: null)] \n[1] filter {traverseF(s5, lambda(l2.0) { ((move(l2.0) == \"graded\") ?: false) }, false)} \n[1] scan generic [s1 = record, s2 = recordId] [s3 = course_id, s4 = score, s5 = status] @\"e95fa378-d8f9-4063-84ab-6908d3395658\" "
+            }
+          },
+          "rejectedPlans": []
+        },
+        "executionStats": {
+          "executionSuccess": true,
+          "nReturned": 2000,
+          "executionTimeMillis": 656,
+          "totalKeysExamined": 0,
+          "totalDocsExamined": 1000000,
+          "executionStages": {
+            "stage": "project",
+            "planNodeId": 3,
+            "nReturned": 2000,
+            "executionTimeMillisEstimate": 649,
+            "opens": 1,
+            "closes": 1,
+            "saveState": 44,
+            "restoreState": 43,
+            "isEOF": 1,
+            "projections": {
+              "15": "newObj(\"_id\", s12, \"cnt\", s13, \"avg_score\", s14) "
+            },
+            "inputStage": {
+              "stage": "project",
+              "planNodeId": 3,
+              "nReturned": 2000,
+              "executionTimeMillisEstimate": 649,
+              "opens": 1,
+              "closes": 1,
+              "saveState": 44,
+              "restoreState": 43,
+              "isEOF": 1,
+              "projections": {
+                "13": "(convert ( s7, int32) ?: s7) ",
+                "14": "\n    if (s11 == 0ll) \n    then null \n    else (doubleDoubleSumFinalize(s10) / s11) \n"
+              },
+              "inputStage": {
+                "stage": "group",
+                "planNodeId": 3,
+                "nReturned": 2000,
+                "executionTimeMillisEstimate": 649,
+                "opens": 1,
+                "closes": 1,
+                "saveState": 44,
+                "restoreState": 43,
+                "isEOF": 1,
+                "groupBySlots": [
+                  12
+                ],
+                "expressions": {
+                  "7": "count() ",
+                  "10": "aggDoubleDoubleSum(s4) ",
+                  "11": "sum(\n    if ((typeMatch(s4, 1088) ?: true) || !(isNumber(s4))) \n    then 0ll \n    else 1ll \n) ",
+                  "initExprs": {
+                    "7": null,
+                    "10": null,
+                    "11": null,
+                    "mergingExprs": {
+                      "6": "sum(s6) ",
+                      "8": "aggMergeDoubleDoubleSums(s8) ",
+                      "9": "sum(s9) "
+                    }
+                  }
+                },
+                "usedDisk": false,
+                "spills": 0,
+                "spilledBytes": 0,
+                "spilledRecords": 0,
+                "spilledDataStorageSize": 0,
+                "peakTrackedMemBytes": 238000,
+                "inputStage": {
+                  "stage": "project",
+                  "planNodeId": 3,
+                  "nReturned": 260384,
+                  "executionTimeMillisEstimate": 556,
+                  "opens": 1,
+                  "closes": 1,
+                  "saveState": 44,
+                  "restoreState": 43,
+                  "isEOF": 1,
+                  "projections": {
+                    "12": "(s3 ?: null) "
+                  },
+                  "inputStage": {
+                    "stage": "filter",
+                    "planNodeId": 1,
+                    "nReturned": 260384,
+                    "executionTimeMillisEstimate": 556,
+                    "opens": 1,
+                    "closes": 1,
+                    "saveState": 44,
+                    "restoreState": 43,
+                    "isEOF": 1,
+                    "numTested": 1000000,
+                    "filter": "traverseF(s5, lambda(l2.0) { ((move(l2.0) == \"graded\") ?: false) }, false) ",
+                    "inputStage": {
+                      "stage": "scan",
+                      "planNodeId": 1,
+                      "nReturned": 1000000,
+                      "executionTimeMillisEstimate": 448,
+                      "opens": 1,
+                      "closes": 1,
+                      "saveState": 44,
+                      "restoreState": 43,
+                      "isEOF": 1,
+                      "numReads": 1000000,
+                      "recordSlot": 1,
+                      "recordIdSlot": 2,
+                      "scanFieldNames": [
+                        "course_id",
+                        "score",
+                        "status"
+                      ],
+                      "scanFieldSlots": [
+                        3,
+                        4,
+                        5
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "nReturned": 2000,
+      "executionTimeMillisEstimate": 655
+    },
+    {
+      "$sort": {
+        "sortKey": {
+          "cnt": -1
+        },
+        "limit": 20
+      },
+      "totalDataSizeSortedBytesEstimate": 7460,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledBytes": 0,
+      "spilledRecords": 0,
+      "spilledDataStorageSize": 0,
+      "nReturned": 20,
+      "executionTimeMillisEstimate": 655,
+      "peakTrackedMemBytes": 7460
+    }
+  ],
+  "queryShapeHash": "EE7B9EDB2D10B09E25D19B396A9C61A2DF76D34F614E93C0C887C0067DED594B",
+  "peakTrackedMemBytes": 238000,
+  "serverInfo": {
+    "host": "DESKTOP-HBO007J",
+    "port": 27017,
+    "version": "8.3.2",
+    "gitVersion": "89f54eb32e217d2f7bfcad50e5919f3033bb9611"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalQueryFrameworkControl": "trySbeRestricted",
+    "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+  },
+  "command": {
+    "aggregate": "student_activity",
+    "pipeline": [
+      {
+        "$match": {
+          "status": "graded"
+        }
+      },
+      {
+        "$group": {
+          "_id": "$course_id",
+          "cnt": {
+            "$sum": 1
+          },
+          "avg_score": {
+            "$avg": "$score"
+          }
+        }
+      },
+      {
+        "$sort": {
+          "cnt": -1
+        }
+      },
+      {
+        "$limit": 20
+      }
+    ],
+    "cursor": {},
+    "$db": "research_db"
+  },
+  "ok": 1.0
+}

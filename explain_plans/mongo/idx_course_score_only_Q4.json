@@ -1,0 +1,225 @@
+{
+  "explainVersion": "2",
+  "stages": [
+    {
+      "$cursor": {
+        "queryPlanner": {
+          "namespace": "research_db.student_activity",
+          "parsedQuery": {
+            "$and": [
+              {
+                "status": {
+                  "$eq": "graded"
+                }
+              },
+              {
+                "created_at": {
+                  "$lt": "2025-10-01 00:00:00"
+                }
+              },
+              {
+                "created_at": {
+                  "$gte": "2025-09-01 00:00:00"
+                }
+              }
+            ]
+          },
+          "indexFilterSet": false,
+          "queryHash": "EBFCB3A2",
+          "planCacheShapeHash": "EBFCB3A2",
+          "planCacheKey": "2B80C192",
+          "optimizationTimeMillis": 0,
+          "cursorType": "regular",
+          "maxIndexedOrSolutionsReached": false,
+          "maxIndexedAndSolutionsReached": false,
+          "maxScansToExplodeReached": false,
+          "prunedSimilarIndexes": false,
+          "winningPlan": {
+            "isCached": false,
+            "queryPlan": {
+              "stage": "GROUP",
+              "planNodeId": 2,
+              "inputStage": {
+                "stage": "COLLSCAN",
+                "planNodeId": 1,
+                "filter": {
+                  "$and": [
+                    {
+                      "status": {
+                        "$eq": "graded"
+                      }
+                    },
+                    {
+                      "created_at": {
+                        "$lt": "2025-10-01 00:00:00"
+                      }
+                    },
+                    {
+                      "created_at": {
+                        "$gte": "2025-09-01 00:00:00"
+                      }
+                    }
+                  ]
+                },
+                "nss": "research_db.student_activity",
+                "direction": "forward"
+              }
+            },
+            "slotBasedPlan": {
+              "slots": "$$RESULT=s9 env: {  }",
+              "stages": "[2] project [s9 = newObj(\"_id\", s7, \"count\", s8)] \n[2] project [s7 = null, s8 = (convert ( s6, int32) ?: s6)] \n[2] group [] [s6 = count()] spillSlots[s5] mergingExprs[sum(s5)] \n[1] filter {(traverseF(s4, lambda(l4.0) { ((move(l4.0) == \"graded\") ?: false) }, false) && (traverseF(s3, lambda(l5.0) { ((move(l5.0) < Date(1759276800000)) ?: false) }, false) && traverseF(s3, lambda(l6.0) { ((move(l6.0) >= Date(1756684800000)) ?: false) }, false)))} \n[1] scan generic [s1 = record, s2 = recordId] [s3 = created_at, s4 = status] @\"e95fa378-d8f9-4063-84ab-6908d3395658\" "
+            }
+          },
+          "rejectedPlans": []
+        },
+        "executionStats": {
+          "executionSuccess": true,
+          "nReturned": 1,
+          "executionTimeMillis": 502,
+          "totalKeysExamined": 0,
+          "totalDocsExamined": 1000000,
+          "executionStages": {
+            "stage": "project",
+            "planNodeId": 2,
+            "nReturned": 1,
+            "executionTimeMillisEstimate": 497,
+            "opens": 1,
+            "closes": 1,
+            "saveState": 28,
+            "restoreState": 27,
+            "isEOF": 1,
+            "projections": {
+              "9": "newObj(\"_id\", s7, \"count\", s8) "
+            },
+            "inputStage": {
+              "stage": "project",
+              "planNodeId": 2,
+              "nReturned": 1,
+              "executionTimeMillisEstimate": 497,
+              "opens": 1,
+              "closes": 1,
+              "saveState": 28,
+              "restoreState": 27,
+              "isEOF": 1,
+              "projections": {
+                "7": "null ",
+                "8": "(convert ( s6, int32) ?: s6) "
+              },
+              "inputStage": {
+                "stage": "group",
+                "planNodeId": 2,
+                "nReturned": 1,
+                "executionTimeMillisEstimate": 497,
+                "opens": 1,
+                "closes": 1,
+                "saveState": 28,
+                "restoreState": 27,
+                "isEOF": 1,
+                "groupBySlots": [],
+                "expressions": {
+                  "6": "count() ",
+                  "initExprs": {
+                    "6": null,
+                    "mergingExprs": {
+                      "5": "sum(s5) "
+                    }
+                  }
+                },
+                "usedDisk": false,
+                "spills": 0,
+                "spilledBytes": 0,
+                "spilledRecords": 0,
+                "spilledDataStorageSize": 0,
+                "peakTrackedMemBytes": 0,
+                "inputStage": {
+                  "stage": "filter",
+                  "planNodeId": 1,
+                  "nReturned": 12157,
+                  "executionTimeMillisEstimate": 475,
+                  "opens": 1,
+                  "closes": 1,
+                  "saveState": 28,
+                  "restoreState": 27,
+                  "isEOF": 1,
+                  "numTested": 1000000,
+                  "filter": "(traverseF(s4, lambda(l4.0) { ((move(l4.0) == \"graded\") ?: false) }, false) && (traverseF(s3, lambda(l5.0) { ((move(l5.0) < Date(1759276800000)) ?: false) }, false) && traverseF(s3, lambda(l6.0) { ((move(l6.0) >= Date(1756684800000)) ?: false) }, false))) ",
+                  "inputStage": {
+                    "stage": "scan",
+                    "planNodeId": 1,
+                    "nReturned": 1000000,
+                    "executionTimeMillisEstimate": 322,
+                    "opens": 1,
+                    "closes": 1,
+                    "saveState": 28,
+                    "restoreState": 27,
+                    "isEOF": 1,
+                    "numReads": 1000000,
+                    "recordSlot": 1,
+                    "recordIdSlot": 2,
+                    "scanFieldNames": [
+                      "created_at",
+                      "status"
+                    ],
+                    "scanFieldSlots": [
+                      3,
+                      4
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "nReturned": 1,
+      "executionTimeMillisEstimate": 497
+    },
+    {
+      "$project": {
+        "count": true,
+        "_id": false
+      },
+      "nReturned": 1,
+      "executionTimeMillisEstimate": 497
+    }
+  ],
+  "queryShapeHash": "CE6DD877E69AF75A663DB4A67020620E103865A51839539C62B007755118D368",
+  "serverInfo": {
+    "host": "DESKTOP-HBO007J",
+    "port": 27017,
+    "version": "8.3.2",
+    "gitVersion": "89f54eb32e217d2f7bfcad50e5919f3033bb9611"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalQueryFrameworkControl": "trySbeRestricted",
+    "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+  },
+  "command": {
+    "aggregate": "student_activity",
+    "pipeline": [
+      {
+        "$match": {
+          "status": "graded",
+          "created_at": {
+            "$gte": "2025-09-01 00:00:00",
+            "$lt": "2025-10-01 00:00:00"
+          }
+        }
+      },
+      {
+        "$count": "count"
+      }
+    ],
+    "cursor": {},
+    "$db": "research_db"
+  },
+  "ok": 1.0
+}

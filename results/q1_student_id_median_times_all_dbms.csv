@@ -1,0 +1,4 @@
+﻿dbms_code,СУБД,median_ms
+postgres,PostgreSQL,30.993000000000002
+mysql,MySQL,15.3945
+mongo,MongoDB,0.686

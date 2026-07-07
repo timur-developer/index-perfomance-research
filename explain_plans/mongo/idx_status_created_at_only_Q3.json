@@ -1,0 +1,198 @@
+{
+  "explainVersion": "2",
+  "stages": [
+    {
+      "$cursor": {
+        "queryPlanner": {
+          "namespace": "research_db.student_activity",
+          "parsedQuery": {
+            "status": {
+              "$eq": "graded"
+            }
+          },
+          "indexFilterSet": false,
+          "queryHash": "2BC16FB2",
+          "planCacheShapeHash": "2BC16FB2",
+          "planCacheKey": "4A793380",
+          "optimizationTimeMillis": 0,
+          "cursorType": "regular",
+          "maxIndexedOrSolutionsReached": false,
+          "maxIndexedAndSolutionsReached": false,
+          "maxScansToExplodeReached": false,
+          "prunedSimilarIndexes": false,
+          "winningPlan": {
+            "isCached": false,
+            "queryPlan": {
+              "stage": "GROUP",
+              "planNodeId": 2,
+              "inputStage": {
+                "stage": "COUNT_SCAN",
+                "planNodeId": 1,
+                "nss": "research_db.student_activity",
+                "keyPattern": {
+                  "status": 1,
+                  "created_at": -1
+                },
+                "indexName": "idx_mongo_status_created_at",
+                "isMultiKey": false,
+                "multiKeyPaths": {
+                  "status": [],
+                  "created_at": []
+                },
+                "isUnique": false,
+                "isSparse": false,
+                "isPartial": false,
+                "indexVersion": 2,
+                "indexBounds": {
+                  "startKey": {
+                    "status": "graded",
+                    "created_at": "MaxKey()"
+                  },
+                  "startKeyInclusive": true,
+                  "endKey": {
+                    "status": "graded",
+                    "created_at": "MinKey()"
+                  },
+                  "endKeyInclusive": true
+                }
+              }
+            },
+            "slotBasedPlan": {
+              "slots": "$$RESULT=s6 env: {  }",
+              "stages": "[2] project [s6 = newObj(\"_id\", s4, \"count\", s5)] \n[2] project [s4 = null, s5 = (convert ( s3, int32) ?: s3)] \n[2] group [] [s3 = count()] spillSlots[s2] mergingExprs[sum(s2)] \n[1] ixseek seekKeyLow = KS(3C677261646564000F01) seekKeyHigh = KS(3C67726164656400F5FE) [s1 = recordId] [] @\"e95fa378-d8f9-4063-84ab-6908d3395658\" @\"idx_mongo_status_created_at\" forward "
+            }
+          },
+          "rejectedPlans": []
+        },
+        "executionStats": {
+          "executionSuccess": true,
+          "nReturned": 1,
+          "executionTimeMillis": 79,
+          "totalKeysExamined": 260384,
+          "totalDocsExamined": 0,
+          "executionStages": {
+            "stage": "project",
+            "planNodeId": 2,
+            "nReturned": 1,
+            "executionTimeMillisEstimate": 68,
+            "opens": 1,
+            "closes": 1,
+            "saveState": 6,
+            "restoreState": 5,
+            "isEOF": 1,
+            "projections": {
+              "6": "newObj(\"_id\", s4, \"count\", s5) "
+            },
+            "inputStage": {
+              "stage": "project",
+              "planNodeId": 2,
+              "nReturned": 1,
+              "executionTimeMillisEstimate": 68,
+              "opens": 1,
+              "closes": 1,
+              "saveState": 6,
+              "restoreState": 5,
+              "isEOF": 1,
+              "projections": {
+                "4": "null ",
+                "5": "(convert ( s3, int32) ?: s3) "
+              },
+              "inputStage": {
+                "stage": "group",
+                "planNodeId": 2,
+                "nReturned": 1,
+                "executionTimeMillisEstimate": 68,
+                "opens": 1,
+                "closes": 1,
+                "saveState": 6,
+                "restoreState": 5,
+                "isEOF": 1,
+                "groupBySlots": [],
+                "expressions": {
+                  "3": "count() ",
+                  "initExprs": {
+                    "3": null,
+                    "mergingExprs": {
+                      "2": "sum(s2) "
+                    }
+                  }
+                },
+                "usedDisk": false,
+                "spills": 0,
+                "spilledBytes": 0,
+                "spilledRecords": 0,
+                "spilledDataStorageSize": 0,
+                "peakTrackedMemBytes": 0,
+                "inputStage": {
+                  "stage": "ixseek",
+                  "planNodeId": 1,
+                  "nReturned": 260384,
+                  "executionTimeMillisEstimate": 44,
+                  "opens": 1,
+                  "closes": 1,
+                  "saveState": 6,
+                  "restoreState": 5,
+                  "isEOF": 1,
+                  "indexName": "idx_mongo_status_created_at",
+                  "keysExamined": 260384,
+                  "seeks": 1,
+                  "numReads": 260385,
+                  "recordIdSlot": 1,
+                  "outputSlots": [],
+                  "indexKeysToInclude": "00000000000000000000000000000000",
+                  "seekKeyLow": "KS(3C677261646564000F01) ",
+                  "seekKeyHigh": "KS(3C67726164656400F5FE) "
+                }
+              }
+            }
+          }
+        }
+      },
+      "nReturned": 1,
+      "executionTimeMillisEstimate": 68
+    },
+    {
+      "$project": {
+        "count": true,
+        "_id": false
+      },
+      "nReturned": 1,
+      "executionTimeMillisEstimate": 68
+    }
+  ],
+  "queryShapeHash": "69ED06CC7CA467E3479098908847356D477CACD346AB42F39933F550A42F0775",
+  "serverInfo": {
+    "host": "DESKTOP-HBO007J",
+    "port": 27017,
+    "version": "8.3.2",
+    "gitVersion": "89f54eb32e217d2f7bfcad50e5919f3033bb9611"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalQueryFrameworkControl": "trySbeRestricted",
+    "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+  },
+  "command": {
+    "aggregate": "student_activity",
+    "pipeline": [
+      {
+        "$match": {
+          "status": "graded"
+        }
+      },
+      {
+        "$count": "count"
+      }
+    ],
+    "cursor": {},
+    "$db": "research_db"
+  },
+  "ok": 1.0
+}

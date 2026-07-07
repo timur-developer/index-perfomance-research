@@ -1,0 +1,145 @@
+{
+  "explainVersion": "1",
+  "queryPlanner": {
+    "namespace": "research_db.student_activity",
+    "parsedQuery": {},
+    "indexFilterSet": false,
+    "queryHash": "018DD29D",
+    "planCacheShapeHash": "018DD29D",
+    "planCacheKey": "89337A20",
+    "optimizationTimeMillis": 0,
+    "maxIndexedOrSolutionsReached": false,
+    "maxIndexedAndSolutionsReached": false,
+    "maxScansToExplodeReached": false,
+    "prunedSimilarIndexes": false,
+    "winningPlan": {
+      "isCached": false,
+      "stage": "PROJECTION_SIMPLE",
+      "transformBy": {
+        "activity_id": 1,
+        "student_id": 1,
+        "course_id": 1,
+        "status": 1,
+        "created_at": 1
+      },
+      "inputStage": {
+        "stage": "SORT",
+        "sortPattern": {
+          "created_at": -1
+        },
+        "memLimit": 104857600,
+        "limitAmount": 100,
+        "type": "simple",
+        "inputStage": {
+          "stage": "COLLSCAN",
+          "nss": "research_db.student_activity",
+          "direction": "forward"
+        }
+      }
+    },
+    "rejectedPlans": []
+  },
+  "executionStats": {
+    "executionSuccess": true,
+    "nReturned": 100,
+    "executionTimeMillis": 615,
+    "totalKeysExamined": 0,
+    "totalDocsExamined": 1000000,
+    "executionStages": {
+      "isCached": false,
+      "stage": "PROJECTION_SIMPLE",
+      "nReturned": 100,
+      "executionTimeMillisEstimate": 553,
+      "works": 1000102,
+      "advanced": 100,
+      "needTime": 1000001,
+      "needYield": 0,
+      "saveState": 35,
+      "restoreState": 35,
+      "isEOF": 1,
+      "transformBy": {
+        "activity_id": 1,
+        "student_id": 1,
+        "course_id": 1,
+        "status": 1,
+        "created_at": 1
+      },
+      "inputStage": {
+        "stage": "SORT",
+        "nReturned": 100,
+        "executionTimeMillisEstimate": 520,
+        "works": 1000102,
+        "advanced": 100,
+        "needTime": 1000001,
+        "needYield": 0,
+        "saveState": 35,
+        "restoreState": 35,
+        "isEOF": 1,
+        "sortPattern": {
+          "created_at": -1
+        },
+        "memLimit": 104857600,
+        "limitAmount": 100,
+        "type": "simple",
+        "totalDataSizeSorted": 27022,
+        "usedDisk": false,
+        "spills": 0,
+        "spilledRecords": 0,
+        "spilledBytes": 0,
+        "spilledDataStorageSize": 0,
+        "peakTrackedMemBytes": 27121,
+        "inputStage": {
+          "stage": "COLLSCAN",
+          "nReturned": 1000000,
+          "executionTimeMillisEstimate": 266,
+          "works": 1000001,
+          "advanced": 1000000,
+          "needTime": 0,
+          "needYield": 0,
+          "saveState": 35,
+          "restoreState": 35,
+          "isEOF": 1,
+          "nss": "research_db.student_activity",
+          "direction": "forward",
+          "docsExamined": 1000000
+        }
+      }
+    }
+  },
+  "queryShapeHash": "DA77E642751F3F176058E298FA29A6CF065D29B5AF62BA7871266CE4902EBADA",
+  "command": {
+    "find": "student_activity",
+    "filter": {},
+    "projection": {
+      "activity_id": 1,
+      "student_id": 1,
+      "course_id": 1,
+      "status": 1,
+      "created_at": 1
+    },
+    "sort": {
+      "created_at": -1
+    },
+    "limit": 100,
+    "$db": "research_db"
+  },
+  "serverInfo": {
+    "host": "DESKTOP-HBO007J",
+    "port": 27017,
+    "version": "8.3.2",
+    "gitVersion": "89f54eb32e217d2f7bfcad50e5919f3033bb9611"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalQueryFrameworkControl": "trySbeRestricted",
+    "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+  },
+  "ok": 1.0
+}

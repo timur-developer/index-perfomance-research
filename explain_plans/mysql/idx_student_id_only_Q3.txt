@@ -1,0 +1,3 @@
+-> Aggregate: count(0)  (cost=110825 rows=1) (actual time=173..173 rows=1 loops=1)
+    -> Filter: (student_activity.`status` = 'graded')  (cost=100901 rows=99243) (actual time=0.0403..166 rows=260384 loops=1)
+        -> Table scan on student_activity  (cost=100901 rows=992425) (actual time=0.0371..116 rows=1e+6 loops=1)

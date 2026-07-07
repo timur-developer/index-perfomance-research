@@ -1,0 +1,3 @@
+-> Aggregate: count(0)  (cost=110934 rows=1) (actual time=135..135 rows=1 loops=1)
+    -> Filter: (student_activity.student_id = 4242)  (cost=101000 rows=99341) (actual time=0.749..135 rows=8 loops=1)
+        -> Table scan on student_activity  (cost=101000 rows=993414) (actual time=0.688..108 rows=1e+6 loops=1)

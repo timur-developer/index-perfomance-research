@@ -1,0 +1,3 @@
+-> Aggregate: count(0)  (cost=38691 rows=1) (actual time=101..101 rows=1 loops=1)
+    -> Filter: (student_activity.`status` = 'graded')  (cost=37850 rows=8411) (actual time=1.06..101 rows=12157 loops=1)
+        -> Index range scan on student_activity using idx_mysql_created_at over ('2025-09-01 00:00:00' <= created_at < '2025-10-01 00:00:00'), with index condition: ((student_activity.created_at >= TIMESTAMP'2025-09-01 00:00:00') and (student_activity.created_at < TIMESTAMP'2025-10-01 00:00:00'))  (cost=37850 rows=84110) (actual time=0.973..98.4 rows=46569 loops=1)

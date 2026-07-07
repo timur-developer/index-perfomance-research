@@ -1,0 +1,3 @@
+-> Aggregate: count(0)  (cost=25367 rows=1) (actual time=19.9..19.9 rows=1 loops=1)
+    -> Filter: ((student_activity.created_at >= TIMESTAMP'2025-09-01 00:00:00') and (student_activity.created_at < TIMESTAMP'2025-10-01 00:00:00'))  (cost=16956 rows=84110) (actual time=0.473..18.5 rows=46569 loops=1)
+        -> Covering index range scan on student_activity using idx_mysql_created_at over ('2025-09-01 00:00:00' <= created_at < '2025-10-01 00:00:00')  (cost=16956 rows=84110) (actual time=0.28..14.2 rows=46569 loops=1)

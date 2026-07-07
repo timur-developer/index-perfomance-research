@@ -1,0 +1,3 @@
+-> Aggregate: count(0)  (cost=42860..42860 rows=1) (actual time=240..240 rows=1 loops=1)
+    -> Filter: (student_activity.score between 0 and 100)  (cost=0.288..31812 rows=110478) (actual time=0.377..210 rows=1e+6 loops=1)
+        -> Covering index skip scan on student_activity using idx_mysql_course_score over 0 <= score <= 100  (cost=0.288..31812 rows=110478) (actual time=0.263..159 rows=1e+6 loops=1)

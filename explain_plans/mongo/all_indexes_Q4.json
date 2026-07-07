@@ -1,0 +1,216 @@
+{
+  "explainVersion": "2",
+  "stages": [
+    {
+      "$cursor": {
+        "queryPlanner": {
+          "namespace": "research_db.student_activity",
+          "parsedQuery": {
+            "$and": [
+              {
+                "status": {
+                  "$eq": "graded"
+                }
+              },
+              {
+                "created_at": {
+                  "$lt": "2025-10-01 00:00:00"
+                }
+              },
+              {
+                "created_at": {
+                  "$gte": "2025-09-01 00:00:00"
+                }
+              }
+            ]
+          },
+          "indexFilterSet": false,
+          "queryHash": "EBFCB3A2",
+          "planCacheShapeHash": "EBFCB3A2",
+          "planCacheKey": "D50C1924",
+          "optimizationTimeMillis": 0,
+          "cursorType": "regular",
+          "maxIndexedOrSolutionsReached": false,
+          "maxIndexedAndSolutionsReached": false,
+          "maxScansToExplodeReached": false,
+          "prunedSimilarIndexes": false,
+          "winningPlan": {
+            "isCached": false,
+            "queryPlan": {
+              "stage": "GROUP",
+              "planNodeId": 2,
+              "inputStage": {
+                "stage": "COUNT_SCAN",
+                "planNodeId": 1,
+                "nss": "research_db.student_activity",
+                "keyPattern": {
+                  "status": 1,
+                  "created_at": -1
+                },
+                "indexName": "idx_mongo_status_created_at",
+                "isMultiKey": false,
+                "multiKeyPaths": {
+                  "status": [],
+                  "created_at": []
+                },
+                "isUnique": false,
+                "isSparse": false,
+                "isPartial": false,
+                "indexVersion": 2,
+                "indexBounds": {
+                  "startKey": {
+                    "status": "graded",
+                    "created_at": "2025-10-01 00:00:00"
+                  },
+                  "startKeyInclusive": false,
+                  "endKey": {
+                    "status": "graded",
+                    "created_at": "2025-09-01 00:00:00"
+                  },
+                  "endKeyInclusive": true
+                }
+              }
+            },
+            "slotBasedPlan": {
+              "slots": "$$RESULT=s6 env: {  }",
+              "stages": "[2] project [s6 = newObj(\"_id\", s4, \"count\", s5)] \n[2] project [s4 = null, s5 = (convert ( s3, int32) ?: s3)] \n[2] group [] [s3 = count()] spillSlots[s2] mergingExprs[sum(s2)] \n[1] ixseek seekKeyLow = KS(3C67726164656400877FFFFE6662EE67FFFE) seekKeyHigh = KS(3C67726164656400877FFFFE66FD6D2FFFFE) [s1 = recordId] [] @\"e95fa378-d8f9-4063-84ab-6908d3395658\" @\"idx_mongo_status_created_at\" forward "
+            }
+          },
+          "rejectedPlans": []
+        },
+        "executionStats": {
+          "executionSuccess": true,
+          "nReturned": 1,
+          "executionTimeMillis": 7,
+          "totalKeysExamined": 12157,
+          "totalDocsExamined": 0,
+          "executionStages": {
+            "stage": "project",
+            "planNodeId": 2,
+            "nReturned": 1,
+            "executionTimeMillisEstimate": 5,
+            "opens": 1,
+            "closes": 1,
+            "saveState": 2,
+            "restoreState": 1,
+            "isEOF": 1,
+            "projections": {
+              "6": "newObj(\"_id\", s4, \"count\", s5) "
+            },
+            "inputStage": {
+              "stage": "project",
+              "planNodeId": 2,
+              "nReturned": 1,
+              "executionTimeMillisEstimate": 5,
+              "opens": 1,
+              "closes": 1,
+              "saveState": 2,
+              "restoreState": 1,
+              "isEOF": 1,
+              "projections": {
+                "4": "null ",
+                "5": "(convert ( s3, int32) ?: s3) "
+              },
+              "inputStage": {
+                "stage": "group",
+                "planNodeId": 2,
+                "nReturned": 1,
+                "executionTimeMillisEstimate": 5,
+                "opens": 1,
+                "closes": 1,
+                "saveState": 2,
+                "restoreState": 1,
+                "isEOF": 1,
+                "groupBySlots": [],
+                "expressions": {
+                  "3": "count() ",
+                  "initExprs": {
+                    "3": null,
+                    "mergingExprs": {
+                      "2": "sum(s2) "
+                    }
+                  }
+                },
+                "usedDisk": false,
+                "spills": 0,
+                "spilledBytes": 0,
+                "spilledRecords": 0,
+                "spilledDataStorageSize": 0,
+                "peakTrackedMemBytes": 0,
+                "inputStage": {
+                  "stage": "ixseek",
+                  "planNodeId": 1,
+                  "nReturned": 12157,
+                  "executionTimeMillisEstimate": 0,
+                  "opens": 1,
+                  "closes": 1,
+                  "saveState": 2,
+                  "restoreState": 1,
+                  "isEOF": 1,
+                  "indexName": "idx_mongo_status_created_at",
+                  "keysExamined": 12157,
+                  "seeks": 1,
+                  "numReads": 12158,
+                  "recordIdSlot": 1,
+                  "outputSlots": [],
+                  "indexKeysToInclude": "00000000000000000000000000000000",
+                  "seekKeyLow": "KS(3C67726164656400877FFFFE6662EE67FFFE) ",
+                  "seekKeyHigh": "KS(3C67726164656400877FFFFE66FD6D2FFFFE) "
+                }
+              }
+            }
+          }
+        }
+      },
+      "nReturned": 1,
+      "executionTimeMillisEstimate": 7
+    },
+    {
+      "$project": {
+        "count": true,
+        "_id": false
+      },
+      "nReturned": 1,
+      "executionTimeMillisEstimate": 7
+    }
+  ],
+  "queryShapeHash": "CE6DD877E69AF75A663DB4A67020620E103865A51839539C62B007755118D368",
+  "serverInfo": {
+    "host": "DESKTOP-HBO007J",
+    "port": 27017,
+    "version": "8.3.2",
+    "gitVersion": "89f54eb32e217d2f7bfcad50e5919f3033bb9611"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalQueryFrameworkControl": "trySbeRestricted",
+    "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+  },
+  "command": {
+    "aggregate": "student_activity",
+    "pipeline": [
+      {
+        "$match": {
+          "status": "graded",
+          "created_at": {
+            "$gte": "2025-09-01 00:00:00",
+            "$lt": "2025-10-01 00:00:00"
+          }
+        }
+      },
+      {
+        "$count": "count"
+      }
+    ],
+    "cursor": {},
+    "$db": "research_db"
+  },
+  "ok": 1.0
+}

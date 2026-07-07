@@ -1,0 +1,42 @@
+{
+  "created_at_utc": "2026-06-30T00:53:37.875135+00:00",
+  "rows": 1000000,
+  "dataset": {
+    "rows": 1000000,
+    "seed": 1149403441,
+    "seed_was_provided": false,
+    "created_at_utc": "2026-06-29T16:19:09.830677Z"
+  },
+  "warmup_runs": 0,
+  "measured_runs": 1000,
+  "dbms": [
+    "postgres",
+    "mysql",
+    "mongo"
+  ],
+  "docker_resource_limits_per_dbms": {
+    "cpus": "2.0",
+    "mem_limit": "3g"
+  },
+  "query_constants": {
+    "student_id": 4242,
+    "start_date": "2025-09-01 00:00:00",
+    "end_date": "2025-10-01 00:00:00",
+    "status": "graded"
+  },
+  "index_modes": [
+    "no_indexes",
+    "idx_student_id_only",
+    "idx_created_at_only",
+    "idx_status_only",
+    "idx_status_created_at_only",
+    "idx_course_score_only",
+    "all_indexes"
+  ],
+  "notes": [
+    "All measured runs are stored in the raw CSV file.",
+    "No-index mode keeps only technical primary key or MongoDB _id index.",
+    "Each index configuration is applied independently before the benchmark series.",
+    "PostgreSQL parallel query and JIT are disabled in docker-compose.yml to reduce variance."
+  ]
+}

@@ -1,0 +1,3 @@
+-> Limit: 100 row(s)  (cost=100901 rows=100) (actual time=259..259 rows=100 loops=1)
+    -> Sort: student_activity.created_at DESC, limit input to 100 row(s) per chunk  (cost=100901 rows=992425) (actual time=259..259 rows=100 loops=1)
+        -> Table scan on student_activity  (cost=100901 rows=992425) (actual time=0.0517..190 rows=1e+6 loops=1)

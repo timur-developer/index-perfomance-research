@@ -1,0 +1,3 @@
+-> Aggregate: count(0)  (cost=111999 rows=1) (actual time=161..161 rows=1 loops=1)
+    -> Filter: ((student_activity.created_at >= TIMESTAMP'2025-09-01 00:00:00') and (student_activity.created_at < TIMESTAMP'2025-10-01 00:00:00'))  (cost=100967 rows=110321) (actual time=0.0637..159 rows=46569 loops=1)
+        -> Table scan on student_activity  (cost=100967 rows=993084) (actual time=0.0382..110 rows=1e+6 loops=1)

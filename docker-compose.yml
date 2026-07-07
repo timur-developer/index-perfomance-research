@@ -1,0 +1,78 @@
+name: index-performance-research
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: ipr_postgres
+    environment:
+      POSTGRES_USER: research
+      POSTGRES_PASSWORD: research
+      POSTGRES_DB: research_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    cpus: "2.0"
+    mem_limit: "3g"
+    command:
+      [
+        "postgres",
+        "-c", "shared_buffers=512MB",
+        "-c", "work_mem=32MB",
+        "-c", "maintenance_work_mem=256MB",
+        "-c", "max_parallel_workers_per_gather=0",
+        "-c", "max_parallel_workers=0",
+        "-c", "jit=off"
+      ]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U research -d research_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  mysql:
+    image: mysql:8.4
+    container_name: ipr_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: research_root
+      MYSQL_DATABASE: research_db
+      MYSQL_USER: research
+      MYSQL_PASSWORD: research
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    cpus: "2.0"
+    mem_limit: "3g"
+    command:
+      [
+        "--local-infile=1",
+        "--innodb-buffer-pool-size=512M",
+        "--max-connections=50"
+      ]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uresearch", "-presearch"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+  mongo:
+    image: mongo:8.0
+    container_name: ipr_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    cpus: "2.0"
+    mem_limit: "3g"
+    command: ["mongod", "--wiredTigerCacheSizeGB", "0.75", "--bind_ip_all"]
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.runCommand({ ping: 1 }).ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  postgres_data:
+  mysql_data:
+  mongo_data:

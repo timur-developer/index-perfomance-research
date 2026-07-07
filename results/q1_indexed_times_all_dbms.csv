@@ -1,0 +1,19 @@
+﻿dbms_code,СУБД,index_mode_code,Конфигурация индексов,median_ms
+postgres,PostgreSQL,idx_student_id_only,student_id,30.993
+mysql,MySQL,idx_student_id_only,student_id,15.3945
+mongo,MongoDB,idx_student_id_only,student_id,0.686
+postgres,PostgreSQL,idx_created_at_only,created_at,92.3505
+mysql,MySQL,idx_created_at_only,created_at,124.0865
+mongo,MongoDB,idx_created_at_only,created_at,303.314
+postgres,PostgreSQL,idx_status_only,status,82.0445
+mysql,MySQL,idx_status_only,status,124.3755
+mongo,MongoDB,idx_status_only,status,302.737
+postgres,PostgreSQL,idx_status_created_at_only,status+date,80.94749999999999
+mysql,MySQL,idx_status_created_at_only,status+date,124.5835
+mongo,MongoDB,idx_status_created_at_only,status+date,302.386
+postgres,PostgreSQL,idx_course_score_only,course+score,80.8075
+mysql,MySQL,idx_course_score_only,course+score,125.522
+mongo,MongoDB,idx_course_score_only,course+score,312.7325
+postgres,PostgreSQL,all_indexes,Все индексы,30.913
+mysql,MySQL,all_indexes,Все индексы,15.448
+mongo,MongoDB,all_indexes,Все индексы,0.6605000000000001

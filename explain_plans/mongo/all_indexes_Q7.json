@@ -1,0 +1,212 @@
+{
+  "explainVersion": "2",
+  "stages": [
+    {
+      "$cursor": {
+        "queryPlanner": {
+          "namespace": "research_db.student_activity",
+          "parsedQuery": {
+            "$and": [
+              {
+                "score": {
+                  "$lte": 100
+                }
+              },
+              {
+                "score": {
+                  "$gte": 0
+                }
+              }
+            ]
+          },
+          "indexFilterSet": false,
+          "queryHash": "4A4B7C19",
+          "planCacheShapeHash": "4A4B7C19",
+          "planCacheKey": "7A3E3068",
+          "optimizationTimeMillis": 0,
+          "cursorType": "regular",
+          "maxIndexedOrSolutionsReached": false,
+          "maxIndexedAndSolutionsReached": false,
+          "maxScansToExplodeReached": false,
+          "prunedSimilarIndexes": false,
+          "winningPlan": {
+            "isCached": false,
+            "queryPlan": {
+              "stage": "GROUP",
+              "planNodeId": 2,
+              "inputStage": {
+                "stage": "COLLSCAN",
+                "planNodeId": 1,
+                "filter": {
+                  "$and": [
+                    {
+                      "score": {
+                        "$lte": 100
+                      }
+                    },
+                    {
+                      "score": {
+                        "$gte": 0
+                      }
+                    }
+                  ]
+                },
+                "nss": "research_db.student_activity",
+                "direction": "forward"
+              }
+            },
+            "slotBasedPlan": {
+              "slots": "$$RESULT=s8 env: {  }",
+              "stages": "[2] project [s8 = newObj(\"_id\", s6, \"count\", s7)] \n[2] project [s6 = null, s7 = (convert ( s5, int32) ?: s5)] \n[2] group [] [s5 = count()] spillSlots[s4] mergingExprs[sum(s4)] \n[1] filter {(traverseF(s3, lambda(l3.0) { ((move(l3.0) <= 100) ?: false) }, false) && traverseF(s3, lambda(l4.0) { ((move(l4.0) >= 0) ?: false) }, false))} \n[1] scan generic [s1 = record, s2 = recordId] [s3 = score] @\"e95fa378-d8f9-4063-84ab-6908d3395658\" "
+            }
+          },
+          "rejectedPlans": []
+        },
+        "executionStats": {
+          "executionSuccess": true,
+          "nReturned": 1,
+          "executionTimeMillis": 590,
+          "totalKeysExamined": 0,
+          "totalDocsExamined": 1000000,
+          "executionStages": {
+            "stage": "project",
+            "planNodeId": 2,
+            "nReturned": 1,
+            "executionTimeMillisEstimate": 581,
+            "opens": 1,
+            "closes": 1,
+            "saveState": 37,
+            "restoreState": 36,
+            "isEOF": 1,
+            "projections": {
+              "8": "newObj(\"_id\", s6, \"count\", s7) "
+            },
+            "inputStage": {
+              "stage": "project",
+              "planNodeId": 2,
+              "nReturned": 1,
+              "executionTimeMillisEstimate": 581,
+              "opens": 1,
+              "closes": 1,
+              "saveState": 37,
+              "restoreState": 36,
+              "isEOF": 1,
+              "projections": {
+                "6": "null ",
+                "7": "(convert ( s5, int32) ?: s5) "
+              },
+              "inputStage": {
+                "stage": "group",
+                "planNodeId": 2,
+                "nReturned": 1,
+                "executionTimeMillisEstimate": 581,
+                "opens": 1,
+                "closes": 1,
+                "saveState": 37,
+                "restoreState": 36,
+                "isEOF": 1,
+                "groupBySlots": [],
+                "expressions": {
+                  "5": "count() ",
+                  "initExprs": {
+                    "5": null,
+                    "mergingExprs": {
+                      "4": "sum(s4) "
+                    }
+                  }
+                },
+                "usedDisk": false,
+                "spills": 0,
+                "spilledBytes": 0,
+                "spilledRecords": 0,
+                "spilledDataStorageSize": 0,
+                "peakTrackedMemBytes": 0,
+                "inputStage": {
+                  "stage": "filter",
+                  "planNodeId": 1,
+                  "nReturned": 1000000,
+                  "executionTimeMillisEstimate": 502,
+                  "opens": 1,
+                  "closes": 1,
+                  "saveState": 37,
+                  "restoreState": 36,
+                  "isEOF": 1,
+                  "numTested": 1000000,
+                  "filter": "(traverseF(s3, lambda(l3.0) { ((move(l3.0) <= 100) ?: false) }, false) && traverseF(s3, lambda(l4.0) { ((move(l4.0) >= 0) ?: false) }, false)) ",
+                  "inputStage": {
+                    "stage": "scan",
+                    "planNodeId": 1,
+                    "nReturned": 1000000,
+                    "executionTimeMillisEstimate": 299,
+                    "opens": 1,
+                    "closes": 1,
+                    "saveState": 37,
+                    "restoreState": 36,
+                    "isEOF": 1,
+                    "numReads": 1000000,
+                    "recordSlot": 1,
+                    "recordIdSlot": 2,
+                    "scanFieldNames": [
+                      "score"
+                    ],
+                    "scanFieldSlots": [
+                      3
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "nReturned": 1,
+      "executionTimeMillisEstimate": 582
+    },
+    {
+      "$project": {
+        "count": true,
+        "_id": false
+      },
+      "nReturned": 1,
+      "executionTimeMillisEstimate": 582
+    }
+  ],
+  "queryShapeHash": "9186A137E1B7309C55CE94D88F9F03CFAB0E78B01A2E9D989963640BD299BF2F",
+  "serverInfo": {
+    "host": "DESKTOP-HBO007J",
+    "port": 27017,
+    "version": "8.3.2",
+    "gitVersion": "89f54eb32e217d2f7bfcad50e5919f3033bb9611"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalQueryFrameworkControl": "trySbeRestricted",
+    "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+  },
+  "command": {
+    "aggregate": "student_activity",
+    "pipeline": [
+      {
+        "$match": {
+          "score": {
+            "$gte": 0,
+            "$lte": 100
+          }
+        }
+      },
+      {
+        "$count": "count"
+      }
+    ],
+    "cursor": {},
+    "$db": "research_db"
+  },
+  "ok": 1.0
+}

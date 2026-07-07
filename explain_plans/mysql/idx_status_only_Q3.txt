@@ -1,0 +1,2 @@
+-> Aggregate: count(0)  (cost=107585 rows=1) (actual time=108..108 rows=1 loops=1)
+    -> Covering index lookup on student_activity using idx_mysql_status (status='graded')  (cost=57931 rows=496542) (actual time=0.0591..99.9 rows=260384 loops=1)

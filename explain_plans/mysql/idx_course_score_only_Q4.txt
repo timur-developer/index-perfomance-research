@@ -1,0 +1,3 @@
+-> Aggregate: count(0)  (cost=102203 rows=1) (actual time=202..202 rows=1 loops=1)
+    -> Filter: ((student_activity.`status` = 'graded') and (student_activity.created_at >= TIMESTAMP'2025-09-01 00:00:00') and (student_activity.created_at < TIMESTAMP'2025-10-01 00:00:00'))  (cost=101099 rows=11047) (actual time=0.0608..201 rows=12157 loops=1)
+        -> Table scan on student_activity  (cost=101099 rows=994403) (actual time=0.0519..142 rows=1e+6 loops=1)

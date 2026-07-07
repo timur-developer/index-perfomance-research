@@ -1,0 +1,297 @@
+{
+  "explainVersion": "2",
+  "stages": [
+    {
+      "$cursor": {
+        "queryPlanner": {
+          "namespace": "research_db.student_activity",
+          "parsedQuery": {
+            "status": {
+              "$eq": "graded"
+            }
+          },
+          "indexFilterSet": false,
+          "queryHash": "40F4F33D",
+          "planCacheShapeHash": "40F4F33D",
+          "planCacheKey": "12A0FF4E",
+          "optimizationTimeMillis": 1,
+          "cursorType": "regular",
+          "maxIndexedOrSolutionsReached": false,
+          "maxIndexedAndSolutionsReached": false,
+          "maxScansToExplodeReached": false,
+          "prunedSimilarIndexes": false,
+          "winningPlan": {
+            "isCached": false,
+            "queryPlan": {
+              "stage": "GROUP",
+              "planNodeId": 4,
+              "inputStage": {
+                "stage": "FETCH",
+                "planNodeId": 2,
+                "nss": "research_db.student_activity",
+                "inputStage": {
+                  "stage": "IXSCAN",
+                  "planNodeId": 1,
+                  "nss": "research_db.student_activity",
+                  "keyPattern": {
+                    "status": 1
+                  },
+                  "indexName": "idx_mongo_status",
+                  "isMultiKey": false,
+                  "multiKeyPaths": {
+                    "status": []
+                  },
+                  "isUnique": false,
+                  "isSparse": false,
+                  "isPartial": false,
+                  "indexVersion": 2,
+                  "direction": "forward",
+                  "indexBounds": {
+                    "status": [
+                      "[\"graded\", \"graded\"]"
+                    ]
+                  }
+                }
+              }
+            },
+            "slotBasedPlan": {
+              "slots": "$$RESULT=s19 env: { s5 = {\"status\" : 1} }",
+              "stages": "[4] project [s19 = newObj(\"_id\", s16, \"cnt\", s17, \"avg_score\", s18)] \n[4] project [s17 = (convert ( s11, int32) ?: s11), s18 = \n    if (s15 == 0ll) \n    then null \n    else (doubleDoubleSumFinalize(s14) / s15) \n] \n[4] group [s16] [s11 = count(), s14 = aggDoubleDoubleSum(s9), s15 = sum(\n    if ((typeMatch(s9, 1088) ?: true) || !(isNumber(s9))) \n    then 0ll \n    else 1ll \n)] spillSlots[s10, s12, s13] mergingExprs[sum(s10), aggMergeDoubleDoubleSums(s12), sum(s13)] \n[4] project [s16 = (s8 ?: null)] \n[2] fetch s1 = seek, s6 = result, s7 = recordId, s4 = inSnapshotId, s2 = inIndexIdent, s3 = inIndexKey, s5 = inIndexKeyPattern [s8 = course_id, s9 = score] @\"e95fa378-d8f9-4063-84ab-6908d3395658\" \n[1] ixseek seekKeyLow = KS(3C6772616465640001) seekKeyHigh = KS(3C67726164656400FE) [s3 = indexKey, s1 = recordId, s4 = snapshotId, s2 = indexIdent] [] @\"e95fa378-d8f9-4063-84ab-6908d3395658\" @\"idx_mongo_status\" forward "
+            }
+          },
+          "rejectedPlans": [
+            {
+              "isCached": false,
+              "stage": "PROJECTION_SIMPLE",
+              "transformBy": {
+                "course_id": 1,
+                "score": 1,
+                "_id": 0
+              },
+              "inputStage": {
+                "stage": "FETCH",
+                "inputStage": {
+                  "stage": "IXSCAN",
+                  "keyPattern": {
+                    "status": 1,
+                    "created_at": -1
+                  },
+                  "indexName": "idx_mongo_status_created_at",
+                  "isMultiKey": false,
+                  "multiKeyPaths": {
+                    "status": [],
+                    "created_at": []
+                  },
+                  "isUnique": false,
+                  "isSparse": false,
+                  "isPartial": false,
+                  "indexVersion": 2,
+                  "direction": "forward",
+                  "indexBounds": {
+                    "status": [
+                      "[\"graded\", \"graded\"]"
+                    ],
+                    "created_at": [
+                      "[MaxKey, MinKey]"
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "executionStats": {
+          "executionSuccess": true,
+          "nReturned": 2000,
+          "executionTimeMillis": 465,
+          "totalKeysExamined": 260384,
+          "totalDocsExamined": 260384,
+          "executionStages": {
+            "stage": "project",
+            "planNodeId": 4,
+            "nReturned": 2000,
+            "executionTimeMillisEstimate": 456,
+            "opens": 1,
+            "closes": 1,
+            "saveState": 32,
+            "restoreState": 31,
+            "isEOF": 1,
+            "projections": {
+              "19": "newObj(\"_id\", s16, \"cnt\", s17, \"avg_score\", s18) "
+            },
+            "inputStage": {
+              "stage": "project",
+              "planNodeId": 4,
+              "nReturned": 2000,
+              "executionTimeMillisEstimate": 456,
+              "opens": 1,
+              "closes": 1,
+              "saveState": 32,
+              "restoreState": 31,
+              "isEOF": 1,
+              "projections": {
+                "17": "(convert ( s11, int32) ?: s11) ",
+                "18": "\n    if (s15 == 0ll) \n    then null \n    else (doubleDoubleSumFinalize(s14) / s15) \n"
+              },
+              "inputStage": {
+                "stage": "group",
+                "planNodeId": 4,
+                "nReturned": 2000,
+                "executionTimeMillisEstimate": 456,
+                "opens": 1,
+                "closes": 1,
+                "saveState": 32,
+                "restoreState": 31,
+                "isEOF": 1,
+                "groupBySlots": [
+                  16
+                ],
+                "expressions": {
+                  "11": "count() ",
+                  "14": "aggDoubleDoubleSum(s9) ",
+                  "15": "sum(\n    if ((typeMatch(s9, 1088) ?: true) || !(isNumber(s9))) \n    then 0ll \n    else 1ll \n) ",
+                  "initExprs": {
+                    "11": null,
+                    "14": null,
+                    "15": null,
+                    "mergingExprs": {
+                      "10": "sum(s10) ",
+                      "12": "aggMergeDoubleDoubleSums(s12) ",
+                      "13": "sum(s13) "
+                    }
+                  }
+                },
+                "usedDisk": false,
+                "spills": 0,
+                "spilledBytes": 0,
+                "spilledRecords": 0,
+                "spilledDataStorageSize": 0,
+                "peakTrackedMemBytes": 238000,
+                "inputStage": {
+                  "stage": "project",
+                  "planNodeId": 4,
+                  "nReturned": 260384,
+                  "executionTimeMillisEstimate": 349,
+                  "opens": 1,
+                  "closes": 1,
+                  "saveState": 32,
+                  "restoreState": 31,
+                  "isEOF": 1,
+                  "projections": {
+                    "16": "(s8 ?: null) "
+                  },
+                  "inputStage": {
+                    "stage": "fetch",
+                    "planNodeId": 2,
+                    "nReturned": 260384,
+                    "executionTimeMillisEstimate": 337,
+                    "opens": 1,
+                    "closes": 1,
+                    "saveState": 32,
+                    "restoreState": 31,
+                    "isEOF": 1,
+                    "numReads": 260384,
+                    "inputStage": {
+                      "stage": "ixseek",
+                      "planNodeId": 1,
+                      "nReturned": 260384,
+                      "executionTimeMillisEstimate": 86,
+                      "opens": 1,
+                      "closes": 1,
+                      "saveState": 32,
+                      "restoreState": 31,
+                      "isEOF": 1,
+                      "indexName": "idx_mongo_status",
+                      "keysExamined": 260384,
+                      "seeks": 1,
+                      "numReads": 260385,
+                      "indexKeySlot": 3,
+                      "recordIdSlot": 1,
+                      "snapshotIdSlot": 4,
+                      "indexIdentSlot": 2,
+                      "outputSlots": [],
+                      "indexKeysToInclude": "00000000000000000000000000000000",
+                      "seekKeyLow": "KS(3C6772616465640001) ",
+                      "seekKeyHigh": "KS(3C67726164656400FE) "
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "nReturned": 2000,
+      "executionTimeMillisEstimate": 464
+    },
+    {
+      "$sort": {
+        "sortKey": {
+          "cnt": -1
+        },
+        "limit": 20
+      },
+      "totalDataSizeSortedBytesEstimate": 7460,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledBytes": 0,
+      "spilledRecords": 0,
+      "spilledDataStorageSize": 0,
+      "nReturned": 20,
+      "executionTimeMillisEstimate": 464,
+      "peakTrackedMemBytes": 7460
+    }
+  ],
+  "queryShapeHash": "EE7B9EDB2D10B09E25D19B396A9C61A2DF76D34F614E93C0C887C0067DED594B",
+  "peakTrackedMemBytes": 238000,
+  "serverInfo": {
+    "host": "DESKTOP-HBO007J",
+    "port": 27017,
+    "version": "8.3.2",
+    "gitVersion": "89f54eb32e217d2f7bfcad50e5919f3033bb9611"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalQueryFrameworkControl": "trySbeRestricted",
+    "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+  },
+  "command": {
+    "aggregate": "student_activity",
+    "pipeline": [
+      {
+        "$match": {
+          "status": "graded"
+        }
+      },
+      {
+        "$group": {
+          "_id": "$course_id",
+          "cnt": {
+            "$sum": 1
+          },
+          "avg_score": {
+            "$avg": "$score"
+          }
+        }
+      },
+      {
+        "$sort": {
+          "cnt": -1
+        }
+      },
+      {
+        "$limit": 20
+      }
+    ],
+    "cursor": {},
+    "$db": "research_db"
+  },
+  "ok": 1.0
+}

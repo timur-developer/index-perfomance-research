@@ -1,0 +1,6 @@
+-> Limit: 20 row(s)  (actual time=2715..2715 rows=20 loops=1)
+    -> Sort: cnt DESC, limit input to 20 row(s) per chunk  (actual time=2715..2715 rows=20 loops=1)
+        -> Stream results  (cost=111043 rows=1987) (actual time=6.17..2713 rows=2000 loops=1)
+            -> Group aggregate: count(0), avg(student_activity.score)  (cost=111043 rows=1987) (actual time=5.91..2704 rows=2000 loops=1)
+                -> Filter: (student_activity.`status` = 'graded')  (cost=101099 rows=99440) (actual time=5.12..2681 rows=260384 loops=1)
+                    -> Index scan on student_activity using idx_mysql_course_score  (cost=101099 rows=994403) (actual time=4.99..2619 rows=1e+6 loops=1)

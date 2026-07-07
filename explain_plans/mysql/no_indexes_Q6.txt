@@ -1,0 +1,6 @@
+-> Limit: 20 row(s)  (actual time=290..290 rows=20 loops=1)
+    -> Sort: cnt DESC, limit input to 20 row(s) per chunk  (actual time=290..290 rows=20 loops=1)
+        -> Table scan on <temporary>  (actual time=289..289 rows=2000 loops=1)
+            -> Aggregate using temporary table  (actual time=289..289 rows=2000 loops=1)
+                -> Filter: (student_activity.`status` = 'graded')  (cost=101066 rows=99407) (actual time=0.151..231 rows=260384 loops=1)
+                    -> Table scan on student_activity  (cost=101066 rows=994073) (actual time=0.125..182 rows=1e+6 loops=1)

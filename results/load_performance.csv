@@ -1,0 +1,7 @@
+dbms,index_mode,elapsed_ms
+postgres,no_indexes,2457.815
+postgres,all_indexes,14129.536
+mysql,no_indexes,5237.552
+mysql,all_indexes,17975.57
+mongo,no_indexes,16006.103
+mongo,all_indexes,15800.713

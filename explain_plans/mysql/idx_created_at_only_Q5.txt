@@ -1,0 +1,2 @@
+-> Limit: 100 row(s)  (cost=0.168 rows=100) (actual time=4.28..4.59 rows=100 loops=1)
+    -> Index scan on student_activity using idx_mysql_created_at (reverse)  (cost=0.168 rows=100) (actual time=4.25..4.54 rows=100 loops=1)

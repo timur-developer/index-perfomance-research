@@ -1,0 +1,5 @@
+-> Limit: 20 row(s)  (actual time=301..301 rows=20 loops=1)
+    -> Sort: cnt DESC, limit input to 20 row(s) per chunk  (actual time=301..301 rows=20 loops=1)
+        -> Table scan on <temporary>  (actual time=300..300 rows=2000 loops=1)
+            -> Aggregate using temporary table  (actual time=300..300 rows=2000 loops=1)
+                -> Index lookup on student_activity using idx_mysql_status (status='graded')  (cost=54629 rows=496542) (actual time=0.223..243 rows=260384 loops=1)

@@ -1,0 +1,148 @@
+dbms,index_mode,index_label,query_id,query_name,median_ms
+mongo,all_indexes,All benchmark indexes,Q1,Exact search by student_id,0.6605000000000001
+mongo,all_indexes,All benchmark indexes,Q2,Date range filtering by created_at,11.4175
+mongo,all_indexes,All benchmark indexes,Q3,Low-selectivity filtering by status,55.5735
+mongo,all_indexes,All benchmark indexes,Q4,Combined filtering by status and created_at,3.2425
+mongo,all_indexes,All benchmark indexes,Q5,Sort by created_at DESC with LIMIT,0.685
+mongo,all_indexes,All benchmark indexes,Q6,Aggregation by course_id for graded activities,415.98
+mongo,all_indexes,All benchmark indexes,Q7,Broad score range where indexes are expected to help little,438.574
+mongo,idx_course_score_only,Only composite index on course_id + score,Q1,Exact search by student_id,312.73249999999996
+mongo,idx_course_score_only,Only composite index on course_id + score,Q2,Date range filtering by created_at,378.5105
+mongo,idx_course_score_only,Only composite index on course_id + score,Q3,Low-selectivity filtering by status,342.81600000000003
+mongo,idx_course_score_only,Only composite index on course_id + score,Q4,Combined filtering by status and created_at,412.05
+mongo,idx_course_score_only,Only composite index on course_id + score,Q5,Sort by created_at DESC with LIMIT,438.97
+mongo,idx_course_score_only,Only composite index on course_id + score,Q6,Aggregation by course_id for graded activities,518.8634999999999
+mongo,idx_course_score_only,Only composite index on course_id + score,Q7,Broad score range where indexes are expected to help little,440.9225
+mongo,idx_created_at_only,Only created_at index,Q1,Exact search by student_id,303.314
+mongo,idx_created_at_only,Only created_at index,Q2,Date range filtering by created_at,12.0085
+mongo,idx_created_at_only,Only created_at index,Q3,Low-selectivity filtering by status,337.0905
+mongo,idx_created_at_only,Only created_at index,Q4,Combined filtering by status and created_at,121.9825
+mongo,idx_created_at_only,Only created_at index,Q5,Sort by created_at DESC with LIMIT,0.6785000000000001
+mongo,idx_created_at_only,Only created_at index,Q6,Aggregation by course_id for graded activities,527.8595
+mongo,idx_created_at_only,Only created_at index,Q7,Broad score range where indexes are expected to help little,438.7555
+mongo,idx_status_created_at_only,Only composite index on status + created_at,Q1,Exact search by student_id,302.38599999999997
+mongo,idx_status_created_at_only,Only composite index on status + created_at,Q2,Date range filtering by created_at,368.6485
+mongo,idx_status_created_at_only,Only composite index on status + created_at,Q3,Low-selectivity filtering by status,57.567499999999995
+mongo,idx_status_created_at_only,Only composite index on status + created_at,Q4,Combined filtering by status and created_at,3.2045000000000003
+mongo,idx_status_created_at_only,Only composite index on status + created_at,Q5,Sort by created_at DESC with LIMIT,435.89649999999995
+mongo,idx_status_created_at_only,Only composite index on status + created_at,Q6,Aggregation by course_id for graded activities,775.5975000000001
+mongo,idx_status_created_at_only,Only composite index on status + created_at,Q7,Broad score range where indexes are expected to help little,437.0775
+mongo,idx_status_only,Only status index,Q1,Exact search by student_id,302.73699999999997
+mongo,idx_status_only,Only status index,Q2,Date range filtering by created_at,369.594
+mongo,idx_status_only,Only status index,Q3,Low-selectivity filtering by status,56.0835
+mongo,idx_status_only,Only status index,Q4,Combined filtering by status and created_at,318.0425
+mongo,idx_status_only,Only status index,Q5,Sort by created_at DESC with LIMIT,439.777
+mongo,idx_status_only,Only status index,Q6,Aggregation by course_id for graded activities,417.505
+mongo,idx_status_only,Only status index,Q7,Broad score range where indexes are expected to help little,436.8565
+mongo,idx_student_id_only,Only student_id index,Q1,Exact search by student_id,0.686
+mongo,idx_student_id_only,Only student_id index,Q2,Date range filtering by created_at,371.88750000000005
+mongo,idx_student_id_only,Only student_id index,Q3,Low-selectivity filtering by status,336.543
+mongo,idx_student_id_only,Only student_id index,Q4,Combined filtering by status and created_at,406.235
+mongo,idx_student_id_only,Only student_id index,Q5,Sort by created_at DESC with LIMIT,445.016
+mongo,idx_student_id_only,Only student_id index,Q6,Aggregation by course_id for graded activities,537.4465
+mongo,idx_student_id_only,Only student_id index,Q7,Broad score range where indexes are expected to help little,440.762
+mongo,no_indexes,No user indexes,Q1,Exact search by student_id,315.5135
+mongo,no_indexes,No user indexes,Q2,Date range filtering by created_at,385.236
+mongo,no_indexes,No user indexes,Q3,Low-selectivity filtering by status,347.649
+mongo,no_indexes,No user indexes,Q4,Combined filtering by status and created_at,411.9545
+mongo,no_indexes,No user indexes,Q5,Sort by created_at DESC with LIMIT,457.0905
+mongo,no_indexes,No user indexes,Q6,Aggregation by course_id for graded activities,564.3815
+mongo,no_indexes,No user indexes,Q7,Broad score range where indexes are expected to help little,449.37350000000004
+mysql,all_indexes,All benchmark indexes,Q1,Exact search by student_id,15.448
+mysql,all_indexes,All benchmark indexes,Q2,Date range filtering by created_at,31.0655
+mysql,all_indexes,All benchmark indexes,Q3,Low-selectivity filtering by status,62.017
+mysql,all_indexes,All benchmark indexes,Q4,Combined filtering by status and created_at,31.0375
+mysql,all_indexes,All benchmark indexes,Q5,Sort by created_at DESC with LIMIT,16.195999999999998
+mysql,all_indexes,All benchmark indexes,Q6,Aggregation by course_id for graded activities,305.214
+mysql,all_indexes,All benchmark indexes,Q7,Broad score range where indexes are expected to help little,157.2995
+mysql,idx_course_score_only,Only composite index on course_id + score,Q1,Exact search by student_id,125.52199999999999
+mysql,idx_course_score_only,Only composite index on course_id + score,Q2,Date range filtering by created_at,155.5395
+mysql,idx_course_score_only,Only composite index on course_id + score,Q3,Low-selectivity filtering by status,156.50150000000002
+mysql,idx_course_score_only,Only composite index on course_id + score,Q4,Combined filtering by status and created_at,188.714
+mysql,idx_course_score_only,Only composite index on course_id + score,Q5,Sort by created_at DESC with LIMIT,248.72199999999998
+mysql,idx_course_score_only,Only composite index on course_id + score,Q6,Aggregation by course_id for graded activities,2254.929
+mysql,idx_course_score_only,Only composite index on course_id + score,Q7,Broad score range where indexes are expected to help little,155.7125
+mysql,idx_created_at_only,Only created_at index,Q1,Exact search by student_id,124.0865
+mysql,idx_created_at_only,Only created_at index,Q2,Date range filtering by created_at,30.864
+mysql,idx_created_at_only,Only created_at index,Q3,Low-selectivity filtering by status,155.3885
+mysql,idx_created_at_only,Only created_at index,Q4,Combined filtering by status and created_at,115.156
+mysql,idx_created_at_only,Only created_at index,Q5,Sort by created_at DESC with LIMIT,15.508
+mysql,idx_created_at_only,Only created_at index,Q6,Aggregation by course_id for graded activities,263.95500000000004
+mysql,idx_created_at_only,Only created_at index,Q7,Broad score range where indexes are expected to help little,139.95800000000003
+mysql,idx_status_created_at_only,Only composite index on status + created_at,Q1,Exact search by student_id,124.58349999999999
+mysql,idx_status_created_at_only,Only composite index on status + created_at,Q2,Date range filtering by created_at,30.9145
+mysql,idx_status_created_at_only,Only composite index on status + created_at,Q3,Low-selectivity filtering by status,61.8365
+mysql,idx_status_created_at_only,Only composite index on status + created_at,Q4,Combined filtering by status and created_at,30.767
+mysql,idx_status_created_at_only,Only composite index on status + created_at,Q5,Sort by created_at DESC with LIMIT,246.3915
+mysql,idx_status_created_at_only,Only composite index on status + created_at,Q6,Aggregation by course_id for graded activities,649.829
+mysql,idx_status_created_at_only,Only composite index on status + created_at,Q7,Broad score range where indexes are expected to help little,140.575
+mysql,idx_status_only,Only status index,Q1,Exact search by student_id,124.37549999999999
+mysql,idx_status_only,Only status index,Q2,Date range filtering by created_at,155.692
+mysql,idx_status_only,Only status index,Q3,Low-selectivity filtering by status,61.5025
+mysql,idx_status_only,Only status index,Q4,Combined filtering by status and created_at,253.7695
+mysql,idx_status_only,Only status index,Q5,Sort by created_at DESC with LIMIT,248.911
+mysql,idx_status_only,Only status index,Q6,Aggregation by course_id for graded activities,313.778
+mysql,idx_status_only,Only status index,Q7,Broad score range where indexes are expected to help little,140.26749999999998
+mysql,idx_student_id_only,Only student_id index,Q1,Exact search by student_id,15.3945
+mysql,idx_student_id_only,Only student_id index,Q2,Date range filtering by created_at,155.4835
+mysql,idx_student_id_only,Only student_id index,Q3,Low-selectivity filtering by status,155.737
+mysql,idx_student_id_only,Only student_id index,Q4,Combined filtering by status and created_at,186.485
+mysql,idx_student_id_only,Only student_id index,Q5,Sort by created_at DESC with LIMIT,243.671
+mysql,idx_student_id_only,Only student_id index,Q6,Aggregation by course_id for graded activities,257.408
+mysql,idx_student_id_only,Only student_id index,Q7,Broad score range where indexes are expected to help little,139.983
+mysql,no_indexes,No user indexes,Q1,Exact search by student_id,124.6115
+mysql,no_indexes,No user indexes,Q2,Date range filtering by created_at,154.89100000000002
+mysql,no_indexes,No user indexes,Q3,Low-selectivity filtering by status,155.457
+mysql,no_indexes,No user indexes,Q4,Combined filtering by status and created_at,186.72699999999998
+mysql,no_indexes,No user indexes,Q5,Sort by created_at DESC with LIMIT,247.60750000000002
+mysql,no_indexes,No user indexes,Q6,Aggregation by course_id for graded activities,268.4225
+mysql,no_indexes,No user indexes,Q7,Broad score range where indexes are expected to help little,139.969
+postgres,all_indexes,All benchmark indexes,Q1,Exact search by student_id,30.913
+postgres,all_indexes,All benchmark indexes,Q2,Date range filtering by created_at,30.9475
+postgres,all_indexes,All benchmark indexes,Q3,Low-selectivity filtering by status,46.5585
+postgres,all_indexes,All benchmark indexes,Q4,Combined filtering by status and created_at,30.762999999999998
+postgres,all_indexes,All benchmark indexes,Q5,Sort by created_at DESC with LIMIT,30.7855
+postgres,all_indexes,All benchmark indexes,Q6,Aggregation by course_id for graded activities,124.926
+postgres,all_indexes,All benchmark indexes,Q7,Broad score range where indexes are expected to help little,77.922
+postgres,idx_course_score_only,Only composite index on course_id + score,Q1,Exact search by student_id,80.8075
+postgres,idx_course_score_only,Only composite index on course_id + score,Q2,Date range filtering by created_at,108.483
+postgres,idx_course_score_only,Only composite index on course_id + score,Q3,Low-selectivity filtering by status,108.89150000000001
+postgres,idx_course_score_only,Only composite index on course_id + score,Q4,Combined filtering by status and created_at,108.747
+postgres,idx_course_score_only,Only composite index on course_id + score,Q5,Sort by created_at DESC with LIMIT,187.2215
+postgres,idx_course_score_only,Only composite index on course_id + score,Q6,Aggregation by course_id for graded activities,139.3665
+postgres,idx_course_score_only,Only composite index on course_id + score,Q7,Broad score range where indexes are expected to help little,78.14099999999999
+postgres,idx_created_at_only,Only created_at index,Q1,Exact search by student_id,92.3505
+postgres,idx_created_at_only,Only created_at index,Q2,Date range filtering by created_at,30.7945
+postgres,idx_created_at_only,Only created_at index,Q3,Low-selectivity filtering by status,108.75450000000001
+postgres,idx_created_at_only,Only created_at index,Q4,Combined filtering by status and created_at,60.678
+postgres,idx_created_at_only,Only created_at index,Q5,Sort by created_at DESC with LIMIT,30.883499999999998
+postgres,idx_created_at_only,Only created_at index,Q6,Aggregation by course_id for graded activities,139.7045
+postgres,idx_created_at_only,Only created_at index,Q7,Broad score range where indexes are expected to help little,110.54
+postgres,idx_status_created_at_only,Only composite index on status + created_at,Q1,Exact search by student_id,80.94749999999999
+postgres,idx_status_created_at_only,Only composite index on status + created_at,Q2,Date range filtering by created_at,62.251999999999995
+postgres,idx_status_created_at_only,Only composite index on status + created_at,Q3,Low-selectivity filtering by status,46.525
+postgres,idx_status_created_at_only,Only composite index on status + created_at,Q4,Combined filtering by status and created_at,30.9735
+postgres,idx_status_created_at_only,Only composite index on status + created_at,Q5,Sort by created_at DESC with LIMIT,187.215
+postgres,idx_status_created_at_only,Only composite index on status + created_at,Q6,Aggregation by course_id for graded activities,124.9345
+postgres,idx_status_created_at_only,Only composite index on status + created_at,Q7,Broad score range where indexes are expected to help little,110.7675
+postgres,idx_status_only,Only status index,Q1,Exact search by student_id,82.0445
+postgres,idx_status_only,Only status index,Q2,Date range filtering by created_at,108.641
+postgres,idx_status_only,Only status index,Q3,Low-selectivity filtering by status,46.3965
+postgres,idx_status_only,Only status index,Q4,Combined filtering by status and created_at,93.643
+postgres,idx_status_only,Only status index,Q5,Sort by created_at DESC with LIMIT,187.064
+postgres,idx_status_only,Only status index,Q6,Aggregation by course_id for graded activities,124.729
+postgres,idx_status_only,Only status index,Q7,Broad score range where indexes are expected to help little,117.1175
+postgres,idx_student_id_only,Only student_id index,Q1,Exact search by student_id,30.993000000000002
+postgres,idx_student_id_only,Only student_id index,Q2,Date range filtering by created_at,108.9115
+postgres,idx_student_id_only,Only student_id index,Q3,Low-selectivity filtering by status,109.1745
+postgres,idx_student_id_only,Only student_id index,Q4,Combined filtering by status and created_at,109.496
+postgres,idx_student_id_only,Only student_id index,Q5,Sort by created_at DESC with LIMIT,194.3845
+postgres,idx_student_id_only,Only student_id index,Q6,Aggregation by course_id for graded activities,141.952
+postgres,idx_student_id_only,Only student_id index,Q7,Broad score range where indexes are expected to help little,124.067
+postgres,no_indexes,No user indexes,Q1,Exact search by student_id,93.16499999999999
+postgres,no_indexes,No user indexes,Q2,Date range filtering by created_at,109.5805
+postgres,no_indexes,No user indexes,Q3,Low-selectivity filtering by status,109.6135
+postgres,no_indexes,No user indexes,Q4,Combined filtering by status and created_at,109.2685
+postgres,no_indexes,No user indexes,Q5,Sort by created_at DESC with LIMIT,190.7685
+postgres,no_indexes,No user indexes,Q6,Aggregation by course_id for graded activities,141.0875
+postgres,no_indexes,No user indexes,Q7,Broad score range where indexes are expected to help little,123.702
