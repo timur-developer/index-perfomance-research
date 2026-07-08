@@ -1,4 +1,4 @@
-import argparse
+﻿import argparse
 import subprocess
 import sys
 from pathlib import Path
@@ -36,6 +36,8 @@ def main() -> None:
     run([PYTHON, "scripts/build_charts.py"])
     if not args.skip_load_measurement:
         run([PYTHON, "scripts/measure_load_performance.py"])
+    run([PYTHON, "scripts/build_q1_run_times_chart.py"])
+    run([PYTHON, "scripts/build_report_charts.py"])
     run([PYTHON, "scripts/build_readable_outputs.py"])
 
 

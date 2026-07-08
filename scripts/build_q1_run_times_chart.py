@@ -1,4 +1,4 @@
-import argparse
+﻿import argparse
 
 import matplotlib
 
@@ -78,11 +78,15 @@ def save_median_csv(median_df: pd.DataFrame) -> None:
 def build_chart(plot_df: pd.DataFrame, median_df: pd.DataFrame) -> None:
     plt.rcParams["font.family"] = "DejaVu Sans"
     plt.rcParams["axes.unicode_minus"] = False
+    plt.rcParams["axes.titlesize"] = 30
+    plt.rcParams["axes.labelsize"] = 25
+    plt.rcParams["xtick.labelsize"] = 21
+    plt.rcParams["ytick.labelsize"] = 21
 
     fig, axes = plt.subplots(
         nrows=3,
         ncols=1,
-        figsize=(13, 10.5),
+        figsize=(15.6, 13.4),
         sharex=True,
     )
     max_run_no = int(plot_df["run_no"].max())
@@ -103,14 +107,14 @@ def build_chart(plot_df: pd.DataFrame, median_df: pd.DataFrame) -> None:
             subset["run_no"],
             subset["elapsed_ms"],
             color=color,
-            linewidth=1,
-            alpha=0.55,
+            linewidth=1.7,
+            alpha=0.62,
         )
         ax.axhline(
             y=median_value,
             color=color,
             linestyle="--",
-            linewidth=2,
+            linewidth=3,
         )
         ax.text(
             0.985,
@@ -119,21 +123,22 @@ def build_chart(plot_df: pd.DataFrame, median_df: pd.DataFrame) -> None:
             transform=ax.transAxes,
             ha="right",
             va="top",
-            fontsize=9,
+            fontsize=22,
             color=color,
-            bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.75, "pad": 1.5},
+            bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.8, "pad": 2.0},
         )
 
-        ax.set_title(label, loc="left", fontsize=11, fontweight="bold")
-        ax.set_ylabel("Время выполнения, мс")
+        ax.set_title(label, loc="left", fontsize=27, fontweight="bold", pad=14)
+        ax.set_ylabel("Время выполнения, мс", labelpad=14)
         ax.set_xlim(1, max_run_no)
-        ax.set_ylim(0, max_elapsed * 1.05)
-        ax.grid(alpha=0.25)
+        ax.set_ylim(0, max_elapsed * 1.08)
+        ax.grid(alpha=0.25, linewidth=1.0)
+        ax.tick_params(axis="both", labelsize=21, pad=7)
 
-    axes[-1].set_xlabel("Номер запуска")
-    fig.suptitle("Время выполнения Q1 по запускам с линиями медианы", fontsize=14)
-    fig.tight_layout(rect=[0, 0, 1, 0.97])
-    fig.savefig(OUTPUT_PNG, dpi=220, bbox_inches="tight")
+    axes[-1].set_xlabel("Номер запуска", labelpad=14)
+    fig.suptitle("Время выполнения Q1 по запускам с линиями медианы", fontsize=34, y=0.982)
+    fig.subplots_adjust(left=0.11, right=0.98, top=0.91, bottom=0.08, hspace=0.35)
+    fig.savefig(OUTPUT_PNG, dpi=300, bbox_inches="tight")
     plt.close(fig)
 
 
